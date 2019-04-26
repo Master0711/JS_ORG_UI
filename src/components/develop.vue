@@ -1,7 +1,7 @@
 <template>
     <div style="width:100%;display:flex;flex-direction: column;justify-content: center;align-items: center;">
         <navication-bar></navication-bar>
-        <div style="width:80%;padding: 10px;display: flex;">
+        <div style="width:80%;padding: 3px 10px;display: flex;">
             <menu-tool></menu-tool>
             <register></register>
         </div>

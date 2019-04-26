@@ -118,7 +118,7 @@
                 <div style="width: 100%; height: auto; margin-top: 5px; line-height: 25px;">
                     <h2 style="color: rgba(0, 0, 0, 0.8);font-family: 'Arial','STKaiti','黑体','宋体',sans-serif;">输入密码</h2>
                     <span style="display: flex; align-items: center;">
-                        <i style="margin: 0px 5px; font-family: Segoe MDL2; font-size: 12px; font-style: normal; color: rgba(36,36,36,0.8); cursor: pointer;" @click="model='input'">&#xE0A6;</i>
+                        <i style="margin: 0px 5px; font-family: Segoe MDL2; font-size: 12px; font-style: normal; color: rgba(36,36,36,0.8); cursor: pointer;font-family: lpc;" @click="model='input'">&#xE0A6;</i>
                         <p style="font-size: 12px; color: rgba(36,36,36,0.6);">{{this.id}}</p>
                     </span>
                 </div>
@@ -132,6 +132,10 @@
 </template>
 
 <style>
+    @font-face {
+        font-family: lpc;
+        src: url(../../static/font/segmdl2.ttf);
+    }
     * { 
         padding:0; 
         margin:0; 
