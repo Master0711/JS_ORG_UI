@@ -11,10 +11,13 @@
                     <div style="width: 250px;height: 100%;display: flex;align-items: center;margin-top: 25px;">
                         <span class="NavigationBar">
                             <!-- <p class="NavigationBarp">活动</p> -->
-                            <a href="" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">活动</a>
+                            <!-- <a href="" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;"></a> -->
+                            <router-link to="register" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">
+                                活动</router-link>
                         </span>
                         <span class="NavigationBar">
-                            <a href="" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">公告</a>
+                            <router-link to="other" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">
+                                公告</router-link>
                         </span>
                         <span class="NavigationBar">
                             <a href="" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">招聘信息</a>
@@ -165,7 +168,7 @@
 
 
 <script>
-
+// import SweetVue from '../../static/JavaScript/SweetVue-1.0.0.js'
 export default {
     name:'navicationBar',
     data () {

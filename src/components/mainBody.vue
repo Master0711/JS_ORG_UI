@@ -1,30 +1,25 @@
 <template>
     <div style="width:100%;display:flex;flex-direction: column;justify-content: center;align-items: center;">
-        <navication-bar></navication-bar>
-        <router-view></router-view>
+        <div style="width:70%;padding: 3px 10px;display: flex;">
+        <menu-tool></menu-tool>
+        <router-view style="width: 850px;height: 525px;"></router-view>
+    </div>
+    <footer-dev></footer-dev>
     </div>
 </template>
 
 <script>
-import navicationBar from "@/components/navicationBar"
 import menuTool from "@/components/menuTool"
 import register from "@/components/register"
 import footerDev from "@/components/footerDev"
-import other from "@/components/other"
 
 export default {
-    name:'develop',
+    name:'mainBody',
     components: {
-        navicationBar,
         menuTool,
         register,
         footerDev,
-        other,
-    },data () {
-        return {
-            
-        }
-    },
+    }
 }
 </script>
 
