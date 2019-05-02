@@ -12,15 +12,16 @@
                         <span class="NavigationBar">
                             <!-- <p class="NavigationBarp">活动</p> -->
                             <!-- <a href="" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;"></a> -->
-                            <router-link to="register" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">
+                            <router-link to="showActivity" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">
                                 活动</router-link>
                         </span>
                         <span class="NavigationBar">
-                            <router-link to="other" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">
+                            <router-link to="eventsGallery" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">
                                 公告</router-link>
                         </span>
                         <span class="NavigationBar">
-                            <a href="" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">招聘信息</a>
+                            <router-link to="addActivity" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">
+                                测试</router-link>
                         </span>
                         <span class="NavigationBar">
                             <a href="" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">关于我们</a>

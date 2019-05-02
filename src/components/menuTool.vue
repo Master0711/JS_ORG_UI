@@ -1,18 +1,18 @@
 <template>
-  <div style="width:180px;padding: 10px;">
+  <div style="width:180px;padding: 10px;overflow-y: auto;overflow-x: hidden;">
     <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
       :collapse="isCollapse" style="min-height:490px;" v-bind:class="{longmenu:!isCollapse}" id="menu">
       <el-submenu index="1">
         <template slot="title">
-          <i class="el-icon-location"></i>
+          <i class="el-icon-edit"></i>
           <span slot="title">个人中心</span>
         </template>
-        <el-menu-item index="1-1" style="height:40px;line-height:40px;">信息查看/修改</el-menu-item>
-        <el-menu-item index="1-2" style="height:40px;line-height:40px;">权限升级</el-menu-item>
+        <el-menu-item index="1-1" class="childrenitem" style="min-width: 180px;">信息查看/修改</el-menu-item>
+        <el-menu-item index="1-2" class="childrenitem" style="min-width: 180px;">权限升级</el-menu-item>
         <el-submenu index="1-3">
-          <template slot="title" style="height:40px;line-height:40px;">个人中心管理端</template>
-          <el-menu-item index="1-3-1">注册审核</el-menu-item>
-          <el-menu-item index="1-3-2">成员信息</el-menu-item>
+          <template slot="title">个人中心管理端</template>
+          <el-menu-item index="1-3-1" class="childrenitem" style="min-width: 180px;">注册审核</el-menu-item>
+          <el-menu-item index="1-3-2" class="childrenitem" style="min-width: 180px;">成员信息</el-menu-item>
         </el-submenu>
       </el-submenu>
       <el-submenu index="2">
@@ -22,7 +22,7 @@
         </template>
         <el-menu-item index="2-1">活动展示</el-menu-item>
         <el-menu-item index="2-2">活动报名</el-menu-item>
-        <el-submenu index="1-3">
+        <el-submenu index="2-3">
           <template slot="title">活动中心管理端</template>
           <el-menu-item index="2-3-1">参与人员</el-menu-item>
           <el-menu-item index="2-3-2">活动发起</el-menu-item>
@@ -55,6 +55,11 @@
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 180px;
     min-height: 490px;
+  }
+  .childrenitem{
+    height:45px;
+    line-height:45px;
+    min-width: 180px;
   }
 
   @font-face {

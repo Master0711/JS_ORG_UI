@@ -6,6 +6,9 @@ import register from '@/components/register'
 import other from '@/components/other'
 import home from '@/components/home'
 import mainBody from '@/components/mainBody'
+import eventsGallery from '@/components/eventsGallery'
+import addActivity from '@/components/addActivity'
+import showActivity from '@/components/showActivity'
 
 Vue.use(Router)
 
@@ -41,6 +44,21 @@ export default new Router({
               path: '/other',
               name: 'other',
               component: other
+            },
+            {
+              path: '/eventsGallery',
+              name: 'eventsGallery',
+              component: eventsGallery
+            },
+            {
+              path: '/addActivity',
+              name: 'addActivity',
+              component: addActivity
+            },
+            {
+              path: '/showActivity',
+              name: 'showActivity',
+              component: showActivity
             }
           ]
         }
