@@ -9,6 +9,10 @@ import mainBody from '@/components/mainBody'
 import eventsGallery from '@/components/eventsGallery'
 import addActivity from '@/components/addActivity'
 import showActivity from '@/components/showActivity'
+import updateImage from '@/components/updateImage'
+import eventsList from '@/components/eventsList'
+import announcementList from '@/components/announcementList'
+import personalInf from '@/components/personalInf'
 
 Vue.use(Router)
 
@@ -59,6 +63,26 @@ export default new Router({
               path: '/showActivity',
               name: 'showActivity',
               component: showActivity
+            },
+            {
+              path: '/updateImage',
+              name: 'updateImage',
+              component: updateImage
+            },
+            {
+              path: '/eventsList',
+              name: 'eventsList',
+              component: eventsList
+            },
+            {
+              path: '/announcementList',
+              name: 'announcementList',
+              component: announcementList
+            },
+            {
+              path: '/personalInf',
+              name: 'personalInf',
+              component: personalInf
             }
           ]
         }
