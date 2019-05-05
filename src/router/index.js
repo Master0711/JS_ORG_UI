@@ -13,6 +13,11 @@ import updateImage from '@/components/updateImage'
 import eventsList from '@/components/eventsList'
 import announcementList from '@/components/announcementList'
 import personalInf from '@/components/personalInf'
+import addTrain from '@/components/addTrain'
+import trainList from '@/components/trainList'
+import rideRecord from '@/components/rideRecord'
+import ticketIng from '@/components/ticketIng'
+ 
 
 Vue.use(Router)
 
@@ -83,6 +88,26 @@ export default new Router({
               path: '/personalInf',
               name: 'personalInf',
               component: personalInf
+            },
+            {
+              path: '/addTrain',
+              name: 'addTrain',
+              component: addTrain
+            },
+            {
+              path: '/trainList',
+              name: 'trainList',
+              component: trainList
+            },
+            {
+              path: '/rideRecord',
+              name: 'rideRecord',
+              component: rideRecord
+            },
+            {
+              path: '/ticketIng',
+              name: 'ticketIng',
+              component: ticketIng
             }
           ]
         }

@@ -127,25 +127,25 @@
         telephone: "",
         birthday: "",
         options: [{
-          value: '1',
+          value: '本科一年级',
           label: '本科一年级'
         }, {
-          value: '2',
+          value: '本科二年级',
           label: '本科二年级'
         }, {
-          value: '3',
+          value: '本科三年级',
           label: '本科三年级'
         }, {
-          value: '4',
+          value: '本科四年级',
           label: '本科四年级'
         }, {
-          value: '5',
+          value: '硕士',
           label: '硕士'
         }, {
-          value: '6',
+          value: '博士及以上',
           label: '博士及以上'
         }, {
-          value: '7',
+          value: '其他',
           label: '其他'
         }],
       };

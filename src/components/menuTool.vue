@@ -33,11 +33,20 @@
           <i class="el-icon-location"></i>
           <span slot="title">乘车系统</span>
         </template>
-        <el-menu-item index="2-1">报名乘车</el-menu-item>
-        <el-menu-item index="2-2">乘车记录</el-menu-item>
+        <!-- <el-menu-item index="2-1">报名乘车 -->
+          <router-link to="trainList" tag="el-menu-item">
+            报名乘车
+          </router-link>
+        <!-- </el-menu-item> -->
+        <!-- <el-menu-item index="2-2">乘车记录</el-menu-item> -->
+        <router-link to="rideRecord" tag="el-menu-item">
+            乘车记录
+          </router-link>
         <el-submenu index="1-3">
           <template slot="title">活动中心管理端</template>
-          <el-menu-item index="2-3-1">参与人员</el-menu-item>
+          <router-link to="ticketIng" tag="el-menu-item" index="2-3-1">
+            参与人员
+          </router-link>
           <el-menu-item index="2-3-2">活动发起</el-menu-item>
         </el-submenu>
       </el-submenu>

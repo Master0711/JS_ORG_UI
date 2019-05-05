@@ -24,7 +24,7 @@
               </router-link>
             </span>
             <span class="NavigationBar">
-              <router-link to="personalInf" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">测试
+              <router-link to="addTrain" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">测试
               </router-link>
             </span>
           </div>
@@ -249,10 +249,36 @@
               message: "服务器开小差了，请稍后重试!"
             });
           });
-      }
+      },
+      initTrain(){
+        let model = this;
+        this.axios({
+            method: "POST",
+            url: "http://localhost:8080/ssm/train/adjustTrainList",
+            data: {}
+          })
+          .then(function (res) {
+            if (res.data.status == "success") {
+              
+            }
+            if (res.data.status == "someerror") {
+              model.$notify.info({
+                title: res.data.status,
+                message: "初始化活动状态出错！"
+              });
+            }
+          })
+          .catch(function (err) {
+            model.$notify.error({
+              title: "error",
+              message: "服务器开小差了，请稍后重试!"
+            });
+          });
+      },
     },
     mounted () {
         this.initActivity();
+        this.initTrain();
     }
   };
 
