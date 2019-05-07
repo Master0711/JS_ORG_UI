@@ -17,7 +17,8 @@ import addTrain from '@/components/addTrain'
 import trainList from '@/components/trainList'
 import rideRecord from '@/components/rideRecord'
 import ticketIng from '@/components/ticketIng'
- 
+import employmentReview from '@/components/employmentReview'
+import showEmployment from '@/components/showEmployment'
 
 Vue.use(Router)
 
@@ -108,6 +109,16 @@ export default new Router({
               path: '/ticketIng',
               name: 'ticketIng',
               component: ticketIng
+            },
+            {
+              path: '/employmentReview',
+              name: 'employmentReview',
+              component: employmentReview
+            },
+            {
+              path: '/showEmployment',
+              name: 'showEmployment',
+              component: showEmployment
             }
           ]
         }

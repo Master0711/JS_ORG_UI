@@ -34,12 +34,12 @@
           <span slot="title">乘车系统</span>
         </template>
         <!-- <el-menu-item index="2-1">报名乘车 -->
-          <router-link to="trainList" tag="el-menu-item">
+          <router-link to="showEmployment" tag="el-menu-item">
             报名乘车
           </router-link>
         <!-- </el-menu-item> -->
         <!-- <el-menu-item index="2-2">乘车记录</el-menu-item> -->
-        <router-link to="rideRecord" tag="el-menu-item">
+        <router-link to="employmentReview" tag="el-menu-item">
             乘车记录
           </router-link>
         <el-submenu index="1-3">
