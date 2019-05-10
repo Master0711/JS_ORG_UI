@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 850px;height: 525px;background-image: url();
+  <div style="width: 500x;height: 525px;background-image: url();
         background-repeat: no-repeat;background-size: 100% 100%;justify-content: center;display: flex;" ref="laa">
     <div style="display: flex;flex-direction: column;">
       <div style="width:370px;display: flex;flex-direction: column;padding:10px;">
@@ -29,8 +29,6 @@
               size="medium"></el-input>
           </div>
           <div class="demo-input-suffix" style="margin:5px;">
-            <!-- <el-input placeholder="年级" suffix-icon="el-icon-date" v-model="grade" style="width: 120px;font-size: 10px;"
-              size="medium"></el-input> -->
             <el-select v-model="grade" placeholder="年级" style="width: 120px;font-size: 10px;" size="medium">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
               </el-option>

@@ -4,8 +4,8 @@
       <div style="width:210px;display:flex;padding-left: 150px;">
         <img src="static/image/notification.jpg">
         <img src="static/image/notificationmini.png" style="width:24px;height:24px;padding-top:22px;">
-        <el-button type="primary" plain @click="showwindow" size="mini" 
-            style="margin-left: 100px;margin-top: 10px;height: 40px;">立即新增</el-button>
+        <!-- <el-button type="primary" plain @click="showwindow" size="mini" 
+            style="margin-left: 100px;margin-top: 10px;height: 40px;">立即新增</el-button> -->
       </div>
     </div>
     <el-table height="490"
@@ -19,7 +19,7 @@
           <el-input v-model="search" size="mini" placeholder="输入活动关键字" />
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="delAnnouncement(scope.row)">Event overview</el-button>
+          <el-button size="mini" @click="delAnnouncement(scope.row)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>

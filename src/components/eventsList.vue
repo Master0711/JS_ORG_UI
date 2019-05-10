@@ -23,25 +23,18 @@
         </div>
         <div
           style="font-family: lpc;margin-top: 5px;margin-left: -195px;text-align: center;display: flex;align-items: center;">
-          <span style="font-family: lpc;font-size: 20px;text-align: center;">
-            &#xED28;
-          </span>
-          <span style="margin-left: 10px;font-size: 13px;font-family: 'Arial','STKaiti','黑体','宋体',sans-serif;">
-            发布日期 : {{initiate_time}}
-          </span>
+          <span style="font-family: lpc;font-size: 20px;text-align: center;">&#xED28;</span>
+          <span style="margin-left: 10px;font-size: 13px;font-family: 'Arial','STKaiti','黑体','宋体',sans-serif;">发布日期 :
+            {{initiate_time}}</span>
         </div>
         <div style="text-align: center;display: flex;margin-top: 15px;width: 85%;padding-left: 12px;">
-          <span style="font-family: lpc;font-size: 20px;text-align: center;">
-            &#xF582;
-          </span>
+          <span style="font-family: lpc;font-size: 20px;text-align: center;">&#xF582;</span>
           <span
-            style="line-height: 20px;max-width: 300px;margin-left: 10px;font-size: 13px;font-family: 'Arial','STKaiti','黑体','宋体',sans-serif;">
-            活动简介 :
-          </span>
+            style="line-height: 20px;max-width: 300px;margin-left: 10px;font-size: 13px;font-family: 'Arial','STKaiti','黑体','宋体',sans-serif;">活动简介
+            :</span>
         </div>
         <div style="text-align: center;display: flex;margin-top: 15px;width: 80%;padding-left: 10px;">
-          <el-input type="textarea" :rows="6" placeholder="请添加描述" v-model="activityContent">
-          </el-input>
+          <el-input type="textarea" :rows="6" placeholder="请添加描述" v-model="activityContent"></el-input>
         </div>
         <div style="text-align: center;display: flex;margin-top: 35px;width: 25%;padding-left: 200px;">
           <el-button type="primary" plain>立即报名</el-button>
@@ -63,17 +56,28 @@
 </style>
 
 <script>
+  import {
+    mapState,
+    mapGetters,
+    mapMutations,
+    mapActions
+  } from "vuex";
   export default {
     name: "eventsList",
     data() {
       return {
         activity_nowrite: [],
-        search: '',
-        activity_activityName: '',
-        initiate_time: '',
-        activityContent: '',
-
+        search: "",
+        activity_activityName: "",
+        initiate_time: "",
+        activityContent: ""
       };
+    },
+    computed: {
+      ...mapState({
+        user: "user"
+      }),
+      ...mapGetters(["getToken"])
     },
     methods: {
       getActivityList() {
@@ -107,18 +111,29 @@
         this.initiate_time = row.initiate_time;
         layer.open({
           type: 1,
-          skin: 'layer_bg',
-          area: ['450px', '550px'],
-          title: 'Sign up',
+          skin: "layer_bg",
+          area: ["450px", "550px"],
+          title: "Sign up",
           shade: 0.3,
           maxmin: true,
           anim: 1,
-          content: $('#regwindow'),
+          content: $("#regwindow")
         });
       },
+      ...mapMutations(["logout"]),
+      ...mapActions(["login"])
     },
     mounted() {
-      this.getActivityList();
+      if (this.user.student_id == '') {
+        this.$router.push("/home");
+        this.$notify({
+          title: 'warming',
+          message: '您尚未登录，请登录后重试',
+          type: 'warning'
+        });
+      }else{
+        this.getActivityList();
+      }
     }
   };
 

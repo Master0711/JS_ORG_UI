@@ -1,6 +1,6 @@
 <template>
     <div style="width:100%;display:flex;flex-direction: column;justify-content: center;align-items: center;">
-        <navication-bar></navication-bar>
+        <navication-bar style="position: sticky;z-index: 1000;top: 0px;"></navication-bar>
         <router-view></router-view>
     </div>
 </template>

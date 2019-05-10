@@ -12,13 +12,25 @@
 import menuTool from "@/components/menuTool"
 import register from "@/components/register"
 import footerDev from "@/components/footerDev"
-
+import {
+    mapState,
+    mapGetters,
+    mapMutations,
+    mapActions
+  } from "vuex";
 export default {
     name:'mainBody',
     components: {
         menuTool,
         register,
         footerDev,
+    },
+    methods: {
+        ...mapMutations(["logout"]),
+      ...mapActions(["login"]),
+    },
+    mounted () {
+        this.login();
     }
 }
 </script>

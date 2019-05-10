@@ -3,15 +3,14 @@
     <div style="width: 100%;height:65px;display: flex;flex-direction: column;
         position: sticky;z-index: 1000;top: 0px;background-color: white;" v-show="show_nav">
       <div style="width: 100%;height:65px;display: flex;justify-content: space-between;">
-        <div style="width: 50%;height: 100%;display: flex;align-items: center;margin-left: 240px;">
+        <div style="width: 50%;height: 100%;display: flex;align-items: center;margin-left: 240px;cursor: pointer;"
+          @click="goBackTohome">
           <img src="static/image/boat.png" style="width: 45px;height: 45px;">
           <p style="margin: 20px;font-size: 20px;padding-top: 20px;">JS Association</p>
         </div>
         <div style="width: 50%;height: 100%;display: flex;align-items: center;">
           <div style="width: 250px;height: 100%;display: flex;align-items: center;margin-top: 25px;">
             <span class="NavigationBar">
-              <!-- <p class="NavigationBarp">活动</p> -->
-              <!-- <a href="" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;"></a> -->
               <router-link to="eventsGallery" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">活动
               </router-link>
             </span>
@@ -41,7 +40,7 @@
                 <button class="sbutton write button_style loginbutton">个人中心</button>
               </div>
               <div>
-                <button class="sbutton write button_style loginbutton">退出登陆</button>
+                <button class="sbutton write button_style loginbutton" @click="loginout">退出登陆</button>
               </div>
             </div>
           </div>
@@ -102,10 +101,10 @@
         </div>
         <h2 style="color: rgba(0, 0, 0, 0.8);font-family: 'Arial','STKaiti','黑体','宋体',sans-serif;padding-top: -20px;">账号
         </h2>
-        <input class="usual" placeholder="电子邮件或电话" v-model="id" style="height: 20px;">
+        <input class="usual" placeholder="电子邮件" v-model="email" style="height: 20px;">
         <span style="font-size: 12px;">
           没有账户?
-          <a class="usual">创建一个</a>
+          <a class="usual" @click="goRegister">创建一个</a>
         </span>
         <div>
           <button class="sbutton blue" style="float: right;" @click="next_step()">下一步</button>
@@ -127,9 +126,12 @@
         <input type="password" class="usual" placeholder="密码" v-model="pwd" style="height: 20px;">
         <a class="usual">忘记密码了</a>
         <div>
-          <button class="sbutton blue" style="float: right;">登录</button>
+          <button class="sbutton blue" style="float: right;" @click="login_f">登录</button>
         </div>
       </div>
+    </div>
+    <div id="registerwindow" style="display: none;">
+      <register></register>
     </div>
   </div>
 </template>
@@ -171,20 +173,47 @@
     font-size: 15px;
   }
 
+  body .layer_bg .layui-layer-content {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  body .layer_bg .layui-layer-title {
+    background-color: rgba(173, 171, 171, 0.205);
+  }
+
 </style>
 
 
 <script>
-  // import SweetVue from '../../static/JavaScript/SweetVue-1.0.0.js'
+import register from "@/components/register"
+  import {
+    mapState,
+    mapGetters,
+    mapMutations,
+    mapActions
+  } from "vuex";
   export default {
     name: "navicationBar",
     data() {
       return {
+        scroll: '',
         show_nav: true,
         model: "input",
         id: "",
-        pwd: ""
+        pwd: "",
+        email: '',
+        publickey: '',
+        encryptpwd: '',
       };
+    },
+    components: {
+      register
+    },
+    computed: {
+      ...mapState({
+        user: "user"
+      }),
     },
     methods: {
       setList: function (pr1, pr2) {
@@ -197,6 +226,30 @@
         child.style.top = t;
         child.style.display = "block";
       },
+      scrollFunc: function (e) {
+        e = e || window.event;
+        let scroll = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
+        var fullheight = document.body.offsetHeight;
+        if (e.wheelDelta) {
+          var a = e.wheelDelta;
+          if (a > 0) {
+            scroll -= fullheight / 6;
+            if (scroll > 600) {
+              this.show_nav = false;
+            } else {
+              this.show_nav = true;
+            }
+          }
+          if (a < 0) {
+            scroll += fullheight / 6;
+            if (scroll > 600) {
+              this.show_nav = false;
+            } else {
+              this.show_nav = true;
+            }
+          }
+        }
+      },
       outList: function (pr2) {
         document.getElementById(pr2).style.display = "none";
       },
@@ -206,24 +259,115 @@
           skin: "layer_bg",
           area: ["440px", "280px"],
           title: "login",
-          shade: 0.6,
+          shade: 0,
           maxmin: true,
           anim: 1,
           content: $("#loginwindow")
         });
       },
       next_step() {
-        if (
-          !(RegularManager.isPhone(this.id) || RegularManager.isEmail(this.id))
-        ) {
-          Sweet.barWarning(1, "当前帐号既不是电子邮件也不是电话");
-          return 0;
-        } else {
-          this.model = "pwd";
-        }
+        this.getpublickey();
+        this.model = "pwd";
       },
-      login() {
-        console.log(this.id);
+      getpublickey() {
+        this.axios({
+            method: "POST",
+            url: "http://localhost:8080/ssm/user/getpublickey",
+            data: {}
+          })
+          .then((res) => {
+            if (res.data.status == "success") {
+              this.publickey = res.data.publickey;
+              console.log(this.publickey);
+
+            }
+            if (res.data.status == "someerror") {
+              this.$notify.info({
+                title: res.data.status,
+                message: "公钥获取失败，请稍后重试！"
+              });
+            }
+          })
+          .catch((err) => {
+            this.$notify.error({
+              title: "error",
+              message: "服务器开小差了，请稍后重试!"
+            });
+          });
+      },
+      login_f() {
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(this.publickey);
+        this.encryptpwd = encrypt.encrypt(this.pwd);
+        console.log(this.encryptpwd);
+        this.axios({
+            method: "POST",
+            url: "http://localhost:8080/ssm/user/login",
+            data: {
+              studentid: this.email,
+              encryptpwd: this.encryptpwd,
+            }
+          })
+          .then((res) => {
+            if (res.data.status == "success") {
+              if (res.data.message == "password is correct") {
+                this.$notify({
+                  title: 'success',
+                  message: '登录成功',
+                  type: 'success'
+                });
+                layer.closeAll();
+                this.$router.push("/mainBody");
+              } else {
+                this.$notify.info({
+                  title: "账号或密码错误",
+                  message: res.data.message
+                });
+              }
+            }
+            if (res.data.status == "someerror") {
+              this.$notify.info({
+                title: res.data.status,
+                message: "初始化活动状态出错！"
+              });
+            }
+          })
+          .catch((err) => {
+            this.$notify.error({
+              title: "error",
+              message: "服务器开小差了，请稍后重试!"
+            });
+          });
+      },
+      identitycheck() {
+        this.axios({
+            method: "POST",
+            url: "http://localhost:8080/ssm/user/identitycheck",
+            data: {}
+          })
+          .then((res) => {
+            if (res.data.status == "success") {
+              if (!res.data.islogin) {
+                this.$router.push("/home");
+                this.$notify.info({
+                  title: "tips",
+                  message: "您尚未登录，请登陆后重试！"
+                });
+              }
+            }
+            if (res.data.status == "someerror") {
+              this.$notify.info({
+                title: res.data.status,
+                message: "请稍后重试！"
+              });
+            }
+          })
+          .catch((err) => {
+            this.$notify.error({
+              title: "error",
+              message: "服务器开小差了，请稍后重试!"
+            });
+          });
       },
       initActivity() {
         let model = this;
@@ -234,7 +378,7 @@
           })
           .then(function (res) {
             if (res.data.status == "success") {
-              
+
             }
             if (res.data.status == "someerror") {
               model.$notify.info({
@@ -250,7 +394,7 @@
             });
           });
       },
-      initTrain(){
+      initTrain() {
         let model = this;
         this.axios({
             method: "POST",
@@ -259,7 +403,7 @@
           })
           .then(function (res) {
             if (res.data.status == "success") {
-              
+
             }
             if (res.data.status == "someerror") {
               model.$notify.info({
@@ -275,10 +419,45 @@
             });
           });
       },
+      goBackTohome() {
+        this.$router.push("/home");
+      },
+      loginout() {
+        console.log("jjjj");
+        this.$router.push("/home");
+        this.logout();
+      },
+      ...mapMutations(["logout"]),
+      ...mapActions(["login"]),
+      goRegister(){
+        layer.closeAll();
+        layer.open({
+          type: 1,
+          skin: "layer_bg",
+          area: ["560px", "600px"],
+          title: "register now",
+          shade: 0,
+          maxmin: true,
+          anim: 1,
+          content: $("#registerwindow")
+        });
+      },
     },
-    mounted () {
-        this.initActivity();
-        this.initTrain();
+    watch: {
+      $route(to, from) {
+        console.log(to.path);
+        if (to.path != "/home") {
+          this.identitycheck();
+        }
+      }
+    },
+    mounted() {
+      if (document.addEventListener) {
+        document.addEventListener('scroll', this.scrollFunc, false);
+      }
+      window.onmousewheel = document.onmousewheel = this.scrollFunc;
+      this.initActivity();
+      this.initTrain();
     }
   };
 

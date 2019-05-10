@@ -19,6 +19,13 @@ import rideRecord from '@/components/rideRecord'
 import ticketIng from '@/components/ticketIng'
 import employmentReview from '@/components/employmentReview'
 import showEmployment from '@/components/showEmployment'
+import upImage from '@/components/upImage'
+import encrypTion from '@/components/encrypTion'
+import memberInformation from '@/components/memberInformation'
+import registrationReview from '@/components/registrationReview'
+import releaseNotice from '@/components/releaseNotice'
+import careerLabel from '@/components/careerLabel'
+import recommend from '@/components/recommend'
 
 Vue.use(Router)
 
@@ -119,6 +126,41 @@ export default new Router({
               path: '/showEmployment',
               name: 'showEmployment',
               component: showEmployment
+            },
+            {
+              path: '/upImage',
+              name: 'upImage',
+              component: upImage
+            },
+            {
+              path: '/encrypTion',
+              name: 'encrypTion',
+              component: encrypTion
+            },
+            {
+              path: '/memberInformation',
+              name: 'memberInformation',
+              component: memberInformation
+            },
+            {
+              path: '/registrationReview',
+              name: 'registrationReview',
+              component: registrationReview
+            },
+            {
+              path: '/releaseNotice',
+              name: 'releaseNotice',
+              component: releaseNotice
+            },
+            {
+              path: '/careerLabel',
+              name: 'careerLabel',
+              component: careerLabel
+            },
+            {
+              path: '/recommend',
+              name: 'recommend',
+              component: recommend
             }
           ]
         }

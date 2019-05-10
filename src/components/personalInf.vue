@@ -9,7 +9,7 @@
     <div style="display: flex;flex-direction: column;margin-left: 60px;">
       <div style="display: flex;margin-top: 30px;">
         <div style="margin-left: 90px;width: 130px;height: 130px;background: cornsilk;">
-          <img src="static/image/avatar.jpg" style="width: 100%;height: 100%;">
+          <img :src="avatar" style="width: 100%;height: 100%;cursor: pointer;" @click="showChangeavatar">
         </div>
         <div style="margin-left: 30px;width: 330px;height: 130px;display: flex;
             flex-direction: row;padding: 10px;box-sizing: border-box;">
@@ -121,6 +121,9 @@
         </el-button>
       </div>
     </div>
+    <div id="changeavatarwindow" style="display:none;">
+      <up-image></up-image>
+    </div>
   </div>
 </template>
 
@@ -129,12 +132,24 @@
     font-family: lpc;
     src: url(../../static/font/segmdl2.ttf);
   }
+  body .layer_bg .layui-layer-content {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  body .layer_bg .layui-layer-title {
+    background-color: rgba(173, 171, 171, 0.205);
+  }
 
 </style>
 
 <script>
+import upImage from "@/components/upImage"
   export default {
     name: 'personalInf',
+    components:{
+      upImage,
+    },
     data() {
       return {
         information: [],
@@ -166,6 +181,7 @@
         grade: '',
         telephone: '',
         birthday: '',
+        avatar:'',
       }
     },
     methods: {
@@ -183,6 +199,7 @@
             this.grade = res.data.information.grade;
             this.telephone = res.data.information.telephone;
             this.birthday = res.data.information.birthday;
+            this.avatar = res.data.information.avatar;
           }
           if (res.data.status == "someerror") {
             this.$notify.info({
@@ -243,6 +260,18 @@
       },
       showChangePassword(){
         
+      },
+      showChangeavatar(){
+        layer.open({
+          type: 1,
+          skin: "layer_bg",
+          area: ["350px", "160px"],
+          title: "Change avatar",
+          shade: 0.3,
+          maxmin: true,
+          anim: 1,
+          content: $("#changeavatarwindow")
+        });
       },
     },
     mounted() {
