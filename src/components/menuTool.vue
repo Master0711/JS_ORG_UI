@@ -108,7 +108,7 @@
           <router-link to="addActivity" tag="el-menu-item" index="2-3-1">
             发布活动
           </router-link>
-          <router-link to="rideRecord" tag="el-menu-item" index="2-3-2">
+          <router-link to="activityMg" tag="el-menu-item" index="2-3-2">
             活动列表
           </router-link>
         </el-submenu>

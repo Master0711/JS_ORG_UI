@@ -19,11 +19,11 @@
               </router-link>
             </span>
             <span class="NavigationBar">
-              <router-link to="addActivity" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">测试
+              <router-link to="addActivity" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">乘车
               </router-link>
             </span>
             <span class="NavigationBar">
-              <router-link to="addTrain" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">测试
+              <router-link to="addTrain" class="NavigationBarp" style="color: #000;padding-bottom: 2.5px;">就业
               </router-link>
             </span>
           </div>

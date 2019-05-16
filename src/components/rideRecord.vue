@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 850px;height: 500px;padding:0px 10px;box-sizing: border-box;display: flex;flex-direction: column;
+  <div style="max-width: 775px;height: 500px;padding:0px 10px;box-sizing: border-box;display: flex;flex-direction: column;
     justify-content: center;align-items: center;">
     <div style="display: flex;padding: 0 10px;">
       <div>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <el-table :data="unfinish.filter(data => !search || data.trainName.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%" v-show="show == '1'">
+      style="width: 740px;" v-show="show == '1'">
       <el-table-column label="trainName" prop="trainName"></el-table-column>
       <el-table-column style="padding-left: 5px;" label="startingpoint" prop="startingpoint"></el-table-column>
       <el-table-column style="padding-left: 5px;" label="destination" prop="destination"></el-table-column>
@@ -31,7 +31,7 @@
       </el-table-column>
     </el-table>
     <el-table :data="Moderated.filter(data => !search || data.trainName.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%" v-show="show == '2'">
+      style="width: 740px;" v-show="show == '2'">
       <el-table-column label="trainName" prop="trainName"></el-table-column>
       <el-table-column style="padding-left: 5px;" label="startingpoint" prop="startingpoint"></el-table-column>
       <el-table-column style="padding-left: 5px;" label="destination" prop="destination"></el-table-column>
@@ -44,7 +44,7 @@
       </el-table-column>
     </el-table>
     <el-table :data="finish.filter(data => !search || data.trainName.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%" v-show="show == '3'">
+      style="width: 740px;" v-show="show == '3'">
       <el-table-column label="trainName" prop="trainName"></el-table-column>
       <el-table-column style="padding-left: 5px;" label="startingpoint" prop="startingpoint"></el-table-column>
       <el-table-column style="padding-left: 5px;" label="destination" prop="destination"></el-table-column>
@@ -57,7 +57,7 @@
       </el-table-column>
     </el-table>
     <el-table :data="refundList.filter(data => !search || data.trainName.toLowerCase().includes(search.toLowerCase()))"
-            style="width: 100%" v-show="show == '4'">
+            style="width: 740px;" v-show="show == '4'">
             <el-table-column label="trainName" prop="trainName"></el-table-column>
             <el-table-column style="padding-left: 5px;" label="startingpoint" prop="startingpoint"></el-table-column>
             <el-table-column style="padding-left: 5px;" label="destination" prop="destination"></el-table-column>

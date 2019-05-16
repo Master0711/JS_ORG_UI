@@ -26,6 +26,7 @@ import registrationReview from '@/components/registrationReview'
 import releaseNotice from '@/components/releaseNotice'
 import careerLabel from '@/components/careerLabel'
 import recommend from '@/components/recommend'
+import activityMg from '@/components/activityMg'
 
 Vue.use(Router)
 
@@ -161,6 +162,11 @@ export default new Router({
               path: '/recommend',
               name: 'recommend',
               component: recommend
+            },
+            {
+              path: '/activityMg',
+              name: 'activityMg',
+              component: activityMg
             }
           ]
         }

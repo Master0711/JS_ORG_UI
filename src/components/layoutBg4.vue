@@ -112,7 +112,7 @@
             if (res.data.status == "someerror") {
               this.$notify.info({
                 title: res.data.status,
-                message: "公钥获取失败，请稍后重试！"
+                message: "就业信息获取失败，请稍后重试！"
               });
             }
           })

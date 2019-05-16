@@ -10,7 +10,7 @@
           <el-input v-model="search" size="mini" placeholder="输入活动关键字搜索" />
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="addActivityOverView(scope.row)">Event overview</el-button>
+          <el-button size="mini" @click="addActivityOverView(scope.row)">Sign up</el-button>
         </template>
       </el-table-column>
     </el-table>

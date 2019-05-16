@@ -1,5 +1,5 @@
 <template>
-  <div style="max-width: 700px;padding: 10px;">
+  <div style="max-width: 760px;padding: 10px;">
     <el-table :data="trainList.filter(data => !search || data.trainName.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%">
       <el-table-column label="trainName" prop="trainName"></el-table-column>

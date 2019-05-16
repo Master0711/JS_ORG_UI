@@ -8,68 +8,23 @@
         <md-card-media class="swiper-inner" style="height: 400px;">
           <!-- swiper -->
           <swiper :options="swiperOption" style="height: 400px;">
-            <swiper-slide style="width: 300px;height: 400px;background-color: rgb(238, 238, 238 , 0.04)">
+            <swiper-slide style="width: 300px;height: 400px;background-color: rgb(238, 238, 238 , 0.04)"
+              v-for="(item,index) in announcementlist" :key="item">
               <div class="active">
                 <div style="width: 100%;height: 70px;">
-                  <p class="activep">洛杉矶湖人夺得总冠军</p>
-                  <p class="activep2">2019-04-04</p>
+                  <p class="activep">{{item.theme}}</p>
+                  <p class="activep2">{{item.time}}</p>
                 </div>
                 <div style="width:100%;">
                   <img src="static/image/James-2.jpg" class="activeimg">
                 </div>
-                <div style="width: 90%;font-size: 15px;padding: 10px;" class="activep">
-                  专业特点：技术全面，突破与组织进攻的能力强介：勒布朗·詹姆斯（LeBron James），1984年12
-                  月30日出生于美国俄亥俄州阿克伦（Akron, Ohio），美国职业篮球运动员......
+                <div style="width: 90%;font-size: 15px;padding: 10px;min-height: 98px;max-height: 98px;
+                  overflow-x: hidden; overflow-y: auto;" class="activep">
+                  <div style="min-height: 98px;max-height: 98px;width: 300px;overflow-x: hidden;">
+                      {{item.content}}
+                  </div>
                 </div>
-                <div style="font-size: 15px;text-align: right;padding-right: 15px;" class="activep">了解详情click</div>
-              </div>
-            </swiper-slide>
-            <swiper-slide style="width: 300px;height: 400px;background-color: rgb(238, 238, 238 , 0.04)">
-              <div class="active">
-                <div style="width: 100%;height: 70px;">
-                  <p class="activep">洛杉矶湖人夺得总冠军</p>
-                  <p class="activep2">2019-04-04</p>
-                </div>
-                <div style="width:100%;">
-                  <img src="static/image/James-1.jpeg" class="activeimg">
-                </div>
-                <div style="width: 90%;font-size: 15px;padding: 10px;" class="activep">
-                  专业特点：技术全面，突破与组织进攻的能力强介：勒布朗·詹姆斯（LeBron James），1984年12
-                  月30日出生于美国俄亥俄州阿克伦（Akron, Ohio），美国职业篮球运动员......
-                </div>
-                <div style="font-size: 15px;text-align: right;padding-right: 15px;" class="activep">了解详情click</div>
-              </div>
-            </swiper-slide>
-            <swiper-slide style="width: 300px;height: 400px;background-color: rgb(238, 238, 238 , 0.04)">
-              <div class="active">
-                <div style="width: 100%;height: 70px;">
-                  <p class="activep">洛杉矶湖人夺得总冠军</p>
-                  <p class="activep2">2019-04-04</p>
-                </div>
-                <div style="width:100%;">
-                  <img src="static/image/James-3.jpg" class="activeimg">
-                </div>
-                <div style="width: 90%;font-size: 15px;padding: 10px;" class="activep">
-                  专业特点：技术全面，突破与组织进攻的能力强介：勒布朗·詹姆斯（LeBron James），1984年12
-                  月30日出生于美国俄亥俄州阿克伦（Akron, Ohio），美国职业篮球运动员......
-                </div>
-                <div style="font-size: 15px;text-align: right;padding-right: 15px;" class="activep">了解详情click</div>
-              </div>
-            </swiper-slide>
-            <swiper-slide style="width: 300px;height: 400px;background-color: rgb(238, 238, 238 , 0.04)">
-              <div class="active">
-                <div style="width: 100%;height: 70px;">
-                  <p class="activep">洛杉矶湖人夺得总冠军</p>
-                  <p class="activep2">2019-04-04</p>
-                </div>
-                <div style="width:100%;">
-                  <img src="static/image/James-2.jpg" class="activeimg">
-                </div>
-                <div style="width: 90%;font-size: 15px;padding: 10px;" class="activep">
-                  专业特点：技术全面，突破与组织进攻的能力强介：勒布朗·詹姆斯（LeBron James），1984年12
-                  月30日出生于美国俄亥俄州阿克伦（Akron, Ohio），美国职业篮球运动员......
-                </div>
-                <div style="font-size: 15px;text-align: right;padding-right: 15px;" class="activep">了解详情click</div>
+                <div style="font-size: 15px;text-align: right;padding-right: 15px;margin-top: 5px;" class="activep">了解详情click</div>
               </div>
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
@@ -188,14 +143,47 @@
         },
         pagination: {
           el: '.swiper-pagination'
-        }
+        },
+        announcementlist: [],
       }
     },
     components: {
       swiper,
       swiperSlide,
       LocalSwiper: VueAwesomeSwiper.swiper,
-    	        LocalSlide: VueAwesomeSwiper.swiperSlide,  
+      LocalSlide: VueAwesomeSwiper.swiperSlide,
+    },
+    methods: {
+      getannouncementlist() {
+        this.axios({
+          method: "POST",
+          url: 'http://localhost:8080/ssm/announcement/getShowNotice',
+          data: {}
+        }).then((res) => {
+          if (res.data.status == "success") {
+            this.announcementlist = res.data.announcementlist;
+            this.$notify({
+              title: res.data.status,
+              message: "通知获取成功！",
+              type: 'success'
+            });
+          }
+          if (res.data.status == "someerror") {
+            this.$notify.info({
+              title: res.data.status,
+              message: "服务器内部错误，请稍后重试！",
+            });
+          }
+        }).catch((err) => {
+          this.$notify.error({
+            title: 'error',
+            message: '服务器开小差了，请稍后重试!'
+          });
+        });
+      },
+    },
+    mounted() {
+      this.getannouncementlist();
     }
   };
 
